@@ -1,16 +1,12 @@
 // remote/webpack.config.js
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const path = require("path");
-const { dependencies } = require("./package.json");
 
-module.exports = {
+const config = {
   entry: "./src/index",
   mode: "development",
   devServer: {
-    static: {
-      directory: path.join(__dirname, "public"),
-    },
+    static: './dist',
     port: 4000,
   },
   module: {
@@ -37,17 +33,6 @@ module.exports = {
         "./App": "./src/App",
         "./Button": "./src/Button",
       },
-      shared: {
-        ...dependencies,
-        react: {
-          singleton: true,
-          requiredVersion: dependencies["react"],
-        },
-        "react-dom": {
-          singleton: true,
-          requiredVersion: dependencies["react-dom"],
-        },
-      },
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
@@ -57,4 +42,12 @@ module.exports = {
     extensions: [".js", ".jsx"],
   },
   target: "web",
+};
+
+module.exports = (env, argv) => {
+  if (argv.mode === 'production') {
+    config.mode = 'production';
+  }
+
+  return config;
 };

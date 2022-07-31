@@ -15,19 +15,18 @@ const RemoteWrapper = ({ children }) => (
     </div>
 );
 
-export const App = () => (
-    <div >
-      <h1>This is the Host!</h1>
-      <h2>Remote App:</h2>
-      <RemoteWrapper>
-        <RemoteApp />
-      </RemoteWrapper>
-      <h2>Remote Button:</h2>
-      <RemoteWrapper>
-        <RemoteButton />
-      </RemoteWrapper>
-      <br />
-      <a href="http://localhost:4000">Link to Remote App</a>
-    </div>
-);
-export default App;
+export default function App() {
+  return <div >
+    <h1>This is the Host!</h1>
+    <h2>Remote App:</h2>
+    <RemoteWrapper>
+      <RemoteApp />
+    </RemoteWrapper>
+    <h2>Remote Button:</h2>
+    <RemoteWrapper>
+      <RemoteButton />
+    </RemoteWrapper>
+    <br />
+    <a href="http://localhost:4000">Link to Remote App</a>
+  </div>
+}

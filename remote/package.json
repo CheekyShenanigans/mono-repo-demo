@@ -13,7 +13,8 @@
   },
   "scripts": {
     "start": "webpack serve",
-    "build": "react-scripts build",
+    "build": "npx webpack",
+    "build:prod": "npx webpack --mode=production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
